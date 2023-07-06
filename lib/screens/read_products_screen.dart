@@ -58,18 +58,18 @@ class ReadProductsScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 3),
-                      child: SizedBox(
-                        height: 110,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
                         child: Card(
                           color: Colors.grey.shade300,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           margin: const EdgeInsets.only(
-                              left: 10, right: 20, top: 8),
+                              left: 10, right: 10, top: 8),
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                bottom: 5, left: 3, right: 3),
+                                bottom: 10, left: 3, right: 3, top: 10),
                             child: ListTile(
                               leading: Padding(
                                 padding: const EdgeInsets.only(top: 10),

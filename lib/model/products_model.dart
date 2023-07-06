@@ -1,9 +1,5 @@
 class ProductsModel {
-  ProductsModel({
-    this.productName,
-    this.productDescription,
-    this.productPrice,
-  });
+  ProductsModel({this.productName, this.productDescription, this.productPrice});
 
   final String? productName;
   final String? productDescription;
