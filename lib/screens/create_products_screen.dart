@@ -1,47 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:products_app/application/product_bloc/product_bloc.dart';
-import 'package:products_app/screens/read_product_screen.dart';
+import 'package:products_app/screens/read_products_screen.dart';
 import 'package:products_app/utils/styles.dart';
 
-class CreateProductScreen extends StatelessWidget {
-  const CreateProductScreen({Key? key}) : super(key: key);
+import '../application/products_bloc/products_bloc.dart';
+
+class CreateProductsScreen extends StatelessWidget {
+  const CreateProductsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductBloc, ProductState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        final ProductBloc productBloc = context.read<ProductBloc>();
+        final ProductsBloc productsBloc = context.read<ProductsBloc>();
 
         return Scaffold(
-          backgroundColor: Colors.grey.shade100,
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     showModalBottomSheet(
-          //       shape: const RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.only(
-          //           topRight: Radius.circular(10),
-          //           topLeft: Radius.circular(10),
-          //         ),
-          //       ),
-          //       context: context,
-          //       isScrollControlled: true,
-          //       builder: (context) => const ModalBottomSheet(),
-          //     );
-          //   },
-          //   child: const Icon(
-          //     Icons.file_download_outlined,
-          //     color: Colors.white,
-          //     size: 35,
-          //   ),
-          // ),
+          backgroundColor: Colors.grey.shade200,
           appBar: AppBar(
-            backgroundColor: Colors.white12,
+            backgroundColor: Colors.grey.shade200,
             elevation: 0.0,
             title: const Center(
               child: Text(
-                'Color Designer',
+                'Create Products',
                 style: Styles.headingStyle,
               ),
             ),
@@ -53,7 +34,7 @@ class CreateProductScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ReadProductScreen(),
+                          builder: (context) => const ReadProductsScreen(),
                         ));
                   },
                   icon: const Icon(
@@ -70,14 +51,17 @@ class CreateProductScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 150,
+                  ),
                   Container(
                     decoration: Styles.containerDecoration,
                     child: TextField(
-                      decoration: Styles.taskFieldDecoration.copyWith(
+                      decoration: Styles.productsFieldDecoration.copyWith(
                         hintText: 'Enter Product Name',
                       ),
                       onChanged: (value) {
-                        productBloc.add(OnAddProductName(productName: value));
+                        productsBloc.add(OnAddProductName(productName: value));
                       },
                     ),
                   ),
@@ -88,10 +72,10 @@ class CreateProductScreen extends StatelessWidget {
                     // height: 100,
                     decoration: Styles.containerDecoration,
                     child: TextField(
-                      decoration: Styles.taskFieldDecoration
+                      decoration: Styles.productsFieldDecoration
                           .copyWith(hintText: 'Enter Product Description'),
                       onChanged: (value) {
-                        productBloc.add(
+                        productsBloc.add(
                             OnAddProductDescription(productDescription: value));
                       },
                     ),
@@ -104,11 +88,11 @@ class CreateProductScreen extends StatelessWidget {
                     decoration: Styles.containerDecoration,
                     child: TextField(
                       keyboardType: TextInputType.number,
-                      decoration: Styles.taskFieldDecoration
+                      decoration: Styles.productsFieldDecoration
                           .copyWith(hintText: 'Enter Product Price'),
                       onChanged: (value) {
-                        productBloc.add(
-                            OnAddProductPrice(productPrice: value));
+                        productsBloc
+                            .add(OnAddProductPrice(productPrice: value));
                       },
                     ),
                   ),
@@ -120,33 +104,42 @@ class CreateProductScreen extends StatelessWidget {
                     height: 45,
                     child: ElevatedButton(
                       onPressed: () {
-                        productBloc.add(OnPressedSave());
-                        // if (state.productName != null &&
-                        //     state.productName != '' &&
-                        //     state.productDescription != null &&
-                        //     state.productDescription != '') {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) =>  const ReadProductScreen(),
-                        //       ));
-                        // } else {
-                        //   print('error');
-                        // }
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ReadProductScreen(),
-                            ));
+                        productsBloc.add(OnPressedSubmit());
+                        if (state.productName != null &&
+                            state.productName != '' &&
+                            state.productDescription != null &&
+                            state.productDescription != '' &&
+                            state.productPrice != null &&
+                            state.productPrice != '') {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Center(
+                                child: Text(
+                                    '${state.productName} is Added to Product\'s Library')),
+                            backgroundColor: Colors.green,
+                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ReadProductsScreen(),
+                              ));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Center(
+                                child: Text('Please Fill all the Fields')),
+                            backgroundColor: Colors.red,
+                          ));
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        primary: Colors.blueAccent,
+                        backgroundColor: Colors.blueAccent,
                       ),
                       child: const Text(
-                        'Save',
+                        'Submit',
                         style: TextStyle(
                           fontSize: 18,
                         ),

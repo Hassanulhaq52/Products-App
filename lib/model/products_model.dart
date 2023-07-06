@@ -1,5 +1,5 @@
-class ProductModel {
-  ProductModel({
+class ProductsModel {
+  ProductsModel({
     this.productName,
     this.productDescription,
     this.productPrice,
@@ -9,7 +9,7 @@ class ProductModel {
   final String? productDescription;
   final String? productPrice;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+  factory ProductsModel.fromJson(Map<String, dynamic> json) => ProductsModel(
         productName: json['colorName'],
         productDescription: json['colorNotes'],
         productPrice: json['productPrice'],

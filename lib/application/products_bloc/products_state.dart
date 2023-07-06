@@ -1,7 +1,7 @@
-part of 'product_bloc.dart';
+part of 'products_bloc.dart';
 
-class ProductState {
-  ProductState({
+class ProductsState {
+  ProductsState({
     required this.productName,
     required this.productDescription,
     required this.productPrice,
@@ -11,10 +11,10 @@ class ProductState {
   final String? productName;
   final String? productDescription;
   final String? productPrice;
-  List<ProductModel> productModel;
+  List<ProductsModel> productModel;
 
-  factory ProductState.initial() {
-    return ProductState(
+  factory ProductsState.initial() {
+    return ProductsState(
       productName: '',
       productDescription: '',
       productPrice: '',
@@ -22,13 +22,13 @@ class ProductState {
     );
   }
 
-  ProductState copyWith({
+  ProductsState copyWith({
     String? productName,
     String? productDescription,
     String? productPrice,
-    List<ProductModel>? productModel,
+    List<ProductsModel>? productModel,
   }) {
-    return ProductState(
+    return ProductsState(
       productName: productName ?? this.productName,
       productDescription: productDescription ?? this.productDescription,
       productModel: productModel ?? this.productModel,

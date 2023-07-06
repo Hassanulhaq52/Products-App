@@ -21,7 +21,7 @@ class Styles {
     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
   );
 
-  static const InputDecoration taskFieldDecoration = InputDecoration(
+  static const InputDecoration productsFieldDecoration = InputDecoration(
     // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
     // // border: InputBorder.none,
     // hintStyle: TextStyle(
