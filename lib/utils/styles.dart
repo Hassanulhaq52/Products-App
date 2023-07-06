@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Styles {
-  static const TextStyle headingStyle = TextStyle(
-    color: Colors.black,
-    fontSize: 23,
-  );
-
-  static const TextStyle colorStyle = TextStyle(
-    color: Colors.grey,
-    fontSize: 12.0,
-    fontWeight: FontWeight.bold,
-  );
-
-  static TextStyle descriptionStyle = TextStyle(
-    color: Colors.grey.shade500,
-  );
+  static const TextStyle headingStyle =
+      TextStyle(color: Colors.black, fontSize: 23);
 
   static BoxDecoration containerDecoration = BoxDecoration(
     color: Colors.grey.shade300,
@@ -22,15 +10,8 @@ class Styles {
   );
 
   static const InputDecoration productsFieldDecoration = InputDecoration(
-    // contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-    // // border: InputBorder.none,
-    // hintStyle: TextStyle(
-    //   color: Colors.black45,
-    // ),
-
     hintText: 'Enter a value',
-    contentPadding:
-    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
     ),
@@ -42,11 +23,8 @@ class Styles {
       borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
     ),
-
   );
 
-  static BoxDecoration addButtonDecoration = BoxDecoration(
-    color: Colors.purple.shade400,
-    shape: BoxShape.circle,
-  );
+  static BoxDecoration addButtonDecoration =
+      BoxDecoration(color: Colors.purple.shade400, shape: BoxShape.circle);
 }

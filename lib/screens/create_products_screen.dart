@@ -21,28 +21,21 @@ class CreateProductsScreen extends StatelessWidget {
             backgroundColor: Colors.grey.shade200,
             elevation: 0.0,
             title: const Center(
-              child: Text(
-                'Create Products',
-                style: Styles.headingStyle,
-              ),
+              child: Text('Create Products', style: Styles.headingStyle),
             ),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ReadProductsScreen(),
-                        ));
-                  },
-                  icon: const Icon(
-                    Icons.save,
-                    size: 30,
-                  ),
-                  color: Colors.black,
-                ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReadProductsScreen(),
+                          ));
+                    },
+                    icon: const Icon(Icons.save, size: 30),
+                    color: Colors.black),
               ),
             ],
           ),
@@ -51,25 +44,23 @@ class CreateProductsScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 150,
-                  ),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                      height: 150.0,
+                      child: Image.asset('images/home_icon.jpg')),
+                  const SizedBox(height: 50),
                   Container(
                     decoration: Styles.containerDecoration,
                     child: TextField(
-                      decoration: Styles.productsFieldDecoration.copyWith(
-                        hintText: 'Enter Product Name',
-                      ),
+                      decoration: Styles.productsFieldDecoration
+                          .copyWith(hintText: 'Enter Product Name'),
                       onChanged: (value) {
                         productsBloc.add(OnAddProductName(productName: value));
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   Container(
-                    // height: 100,
                     decoration: Styles.containerDecoration,
                     child: TextField(
                       decoration: Styles.productsFieldDecoration
@@ -80,9 +71,7 @@ class CreateProductsScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   Container(
                     // height: 100,
                     decoration: Styles.containerDecoration,
@@ -96,9 +85,7 @@ class CreateProductsScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   SizedBox(
                     width: double.infinity,
                     height: 45,
@@ -133,22 +120,17 @@ class CreateProductsScreen extends StatelessWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        backgroundColor: Colors.blueAccent,
-                      ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: Colors.blueAccent),
                       child: const Text(
                         'Submit',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 9,
-                  ),
+                  const SizedBox(height: 9),
                 ],
               ),
             ),

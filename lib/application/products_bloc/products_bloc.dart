@@ -30,54 +30,47 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       );
       updatedProducts[event.index] = updatedProduct;
       emit(state.copyWith(productModel: updatedProducts));
-      _saveProductsToSharedPreferences();
+      saveProductsToSharedPreferences();
     });
 
     on<OnDeleteProduct>((event, emit) {
       final updatedProducts = List.of(state.productModel);
       updatedProducts.removeAt(event.index);
       emit(state.copyWith(productModel: updatedProducts));
-      _saveProductsToSharedPreferences();
+      saveProductsToSharedPreferences();
     });
 
     on<OnPressedSubmit>((event, emit) {
-      if (state.productName != null &&
-          state.productName != '' &&
-          state.productDescription != null &&
-          state.productDescription != '') {
-        emit(
-          state.copyWith(
-            productModel: state.productModel
-              ..add(
-                ProductsModel(
-                  productName: state.productName!,
-                  productDescription: state.productDescription!,
-                  productPrice: state.productPrice!,
-                ),
+      emit(
+        state.copyWith(
+          productModel: state.productModel
+            ..add(
+              ProductsModel(
+                productName: state.productName!,
+                productDescription: state.productDescription!,
+                productPrice: state.productPrice!,
               ),
-          ),
-        );
-        _saveProductsToSharedPreferences();
-      } else {
-        print('Please fill in all the fields');
-      }
+            ),
+        ),
+      );
+      saveProductsToSharedPreferences();
     });
   }
 
   Future<void> loadProductsFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
-    final colorsJson = prefs.getString('products');
-    if (colorsJson != null) {
-      final colorsMapList = (jsonDecode(colorsJson) as List<dynamic>)
-          .map((colorMap) => ProductsModel.fromJson(colorMap))
+    final productsJson = prefs.getString('products');
+    if (productsJson != null) {
+      final productsMapList = (jsonDecode(productsJson) as List<dynamic>)
+          .map((productMap) => ProductsModel.fromJson(productMap))
           .toList();
-      emit(state.copyWith(productModel: colorsMapList));
+      emit(state.copyWith(productModel: productsMapList));
     } else {
       emit(state.copyWith(productModel: []));
     }
   }
 
-  Future<void> _saveProductsToSharedPreferences() async {
+  Future<void> saveProductsToSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final encodedList = jsonEncode(
       state.productModel.map((product) => product.toJson()).toList(),

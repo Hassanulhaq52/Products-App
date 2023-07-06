@@ -28,7 +28,7 @@ class UpdateProductsScreen extends StatelessWidget {
                 onChanged: (value) {
                   productBloc.add(OnAddProductName(productName: value));
                 },
-                decoration: InputDecoration(labelText: 'Product Name'),
+                decoration: const InputDecoration(labelText: 'Product Name'),
               ),
               const SizedBox(height: 30,),
               TextFormField(
@@ -37,7 +37,7 @@ class UpdateProductsScreen extends StatelessWidget {
                   productBloc
                       .add(OnAddProductDescription(productDescription: value));
                 },
-                decoration: InputDecoration(labelText: 'Product Description'),
+                decoration: const InputDecoration(labelText: 'Product Description'),
               ),
               const SizedBox(height: 50,),
               TextFormField(
@@ -54,7 +54,7 @@ class UpdateProductsScreen extends StatelessWidget {
                   productBloc.add(OnUpdateProduct(index: index));
                   Navigator.pop(context);
                 },
-                child: Text('Update'),
+                child: const Text('Update'),
               ),
             ],
           ),

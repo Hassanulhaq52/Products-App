@@ -21,7 +21,6 @@ class ReadProductsScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.grey.shade100,
             elevation: 0.0,
-            // bottomOpacity: 0.0,
             title: const Text(
               'Products Library',
               style: Styles.headingStyle,
@@ -42,9 +41,7 @@ class ReadProductsScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: const Icon(
-                      Icons.add,
-                    ),
+                    icon: const Icon(Icons.add),
                   ),
                 ),
               ),
@@ -58,13 +55,11 @@ class ReadProductsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 3),
                       child: SizedBox(
-                        height: 100,
+                        height: 110,
                         child: Card(
                           color: Colors.grey.shade300,
                           shape: RoundedRectangleBorder(
@@ -79,51 +74,35 @@ class ReadProductsScreen extends StatelessWidget {
                               leading: Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: Container(
-                                  width: 45,
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Text(
-                                      'Price: ${state.productModel[index].productPrice}'),
-                                ),
+                                    width: 55,
+                                    height: 55,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Text(
+                                        'Price: ${state.productModel[index].productPrice}')),
                               ),
                               title: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    '${state.productModel[index].productName}',
-                                    style: const TextStyle(
-                                        fontSize: 18, color: Colors.black),
-                                  ),
-                                  const SizedBox(
-                                    height: 1.0,
-                                  ),
+                                      '${state.productModel[index].productName}',
+                                      style: const TextStyle(
+                                          fontSize: 18, color: Colors.black)),
+                                  const SizedBox(height: 1.0),
                                   Text(
                                     '${state.productModel[index].productDescription}',
                                     style: const TextStyle(
                                         fontSize: 14, color: Colors.black54),
                                   ),
-                                  const SizedBox(
-                                    height: 6.0,
-                                  ),
-                                  // Text(
-                                  //     'Price: ${state.productModel[index].productPrice}',
-                                  //     style: Styles.colorStyle,
-                                  //   ),
-                                  //     const SizedBox(
-                                  //       height: 6.0,
-                                  //     ),
+                                  const SizedBox(height: 6.0),
                                 ],
                               ),
                               trailing: SizedBox(
                                 width: 80,
                                 height: 30,
                                 child: Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SizedBox(
                                       width: 20,
@@ -138,36 +117,21 @@ class ReadProductsScreen extends StatelessWidget {
                                             ),
                                           );
                                         },
-                                        icon: const Icon(
-                                          Icons.edit,
-                                        ),
+                                        icon: const Icon(Icons.edit),
                                       ),
                                     ),
-
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
+                                    const SizedBox(width: 20),
                                     SizedBox(
                                       width: 20,
                                       child: IconButton(
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                        ),
+                                        icon: const Icon(Icons.delete,
+                                            color: Colors.red),
                                         onPressed: () {
                                           productsBloc.add(
                                               OnDeleteProduct(index: index));
                                         },
                                       ),
                                     ),
-
-                                    // SizedBox(
-                                    //   height: 20,
-                                    // ),
-                                    // Text(
-                                    //   'Price: ${state.productModel[index].productPrice}',
-                                    //   style: Styles.colorStyle,
-                                    // ),
                                   ],
                                 ),
                               ),
