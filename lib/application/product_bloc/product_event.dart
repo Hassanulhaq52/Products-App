@@ -20,4 +20,16 @@ class OnAddProductPrice extends ProductEvent {
   final String productPrice;
 }
 
+class OnUpdateProduct extends ProductEvent {
+  OnUpdateProduct({required this.index});
+
+  final int index;
+}
+
+class OnDeleteProduct extends ProductEvent {
+  final int index;
+
+  OnDeleteProduct({required this.index});
+}
+
 class OnPressedSave extends ProductEvent {}

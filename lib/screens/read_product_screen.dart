@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:products_app/application/product_bloc/product_bloc.dart';
 import 'package:products_app/screens/create_product_screen.dart';
 import 'package:products_app/utils/styles.dart';
+import 'package:products_app/widgets/update_products.dart';
 
 class ReadProductScreen extends StatelessWidget {
   const ReadProductScreen({Key? key}) : super(key: key);
@@ -12,6 +13,9 @@ class ReadProductScreen extends StatelessWidget {
     return BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
         context.read<ProductBloc>().loadProductsFromSharedPreferences();
+
+        final ProductBloc productBloc = context.read<ProductBloc>();
+
         return Scaffold(
           backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
@@ -55,7 +59,7 @@ class ReadProductScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 3),
                     child: SizedBox(
-                      height: 90,
+                      height: 100,
                       child: Card(
                         color: Colors.grey.shade300,
                         shape: RoundedRectangleBorder(
@@ -67,6 +71,18 @@ class ReadProductScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               bottom: 8, left: 3, right: 3),
                           child: ListTile(
+                            leading: Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Container(
+                                width: 45,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                    'Price: ${state.productModel[index].productPrice}'),
+                              ),
+                            ),
                             title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -87,17 +103,65 @@ class ReadProductScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 6.0,
                                 ),
+                                // Text(
+                                //     'Price: ${state.productModel[index].productPrice}',
+                                //     style: Styles.colorStyle,
+                                //   ),
+                                //     const SizedBox(
+                                //       height: 6.0,
+                                //     ),
                               ],
                             ),
-                            trailing: Column(
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Price: ${state.productModel[index].productPrice}',
-                                  style: Styles.colorStyle,
-                                ),
-                              ],
+                            trailing: SizedBox(
+                              width: 70,
+                              height: 30,
+                              child: Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                UpdateProductScreen(
+                                                    index: index),
+                                          ),
+                                        );
+                                      },
+                                      icon: const Icon(
+                                        Icons.edit,
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                    child: IconButton(
+                                      icon: const Icon(Icons.delete),
+                                      onPressed: () {
+                                        productBloc
+                                            .add(OnDeleteProduct(index: index));
+                                      },
+                                    ),
+                                  ),
+
+                                  // SizedBox(
+                                  //   height: 20,
+                                  // ),
+                                  // Text(
+                                  //   'Price: ${state.productModel[index].productPrice}',
+                                  //   style: Styles.colorStyle,
+                                  // ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
